@@ -7,3 +7,4 @@ rasterio
 geopandas
 tensorflow>=2.9.0
 seaborn
+shapely
