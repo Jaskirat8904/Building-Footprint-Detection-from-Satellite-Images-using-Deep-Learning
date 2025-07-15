@@ -1,0 +1,9 @@
+numpy
+matplotlib
+opencv-python
+scikit-image
+scikit-learn
+rasterio
+geopandas
+tensorflow>=2.9.0
+seaborn
