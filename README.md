@@ -1,62 +1,118 @@
-# 🏙️ Building Footprint Detection from Satellite Imagery using U-Net
+# 🏘️ Building Footprint Detection from Satellite Images using U-Net
 
-<p align="center">
-  <img src="https://via.placeholder.com/1200x400/0f172a/60a5fa?text=Building+Footprint+Extraction+with+U-Net" alt="Project Banner" width="100%"/>
-  <br><br>
-  <em>Automated semantic segmentation of buildings from high-resolution satellite & aerial imagery</em>
-</p>
+<div align="center">
+
+**Deep learning pipeline for automated detection and segmentation of building footprints from satellite imagery**
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+
+*Leveraging U-Net architecture for precise semantic segmentation of urban structures*
+
+</div>
 
 ---
 
-## 🌟 Overview
+## 📋 Table of Contents
+- [Problem Statement](#-problem-statement)
+- [Key Features](#-key-features)
+- [Applications](#-applications)
+- [Model Architecture](#-model-architecture)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Results](#-results)
+- [Dataset](#-dataset)
+- [Contributing](#-contributing)
 
-**Accurate building footprint extraction** is essential for **urban planning**, **disaster response**, **smart city development**, and **geospatial intelligence**.
+---
 
-This project implements a complete **end-to-end deep learning pipeline** using a **U-Net architecture** to perform **binary semantic segmentation** — classifying every pixel as **building** or **non-building**.
+## 🎯 Problem Statement
 
-### What this project delivers
+Identifying building footprints from satellite imagery is crucial for urban planning, disaster response, and geospatial analytics. However, manual annotation is:
+- ⏱️ **Time-intensive** - Hours of manual work per image
+- 💰 **Expensive** - Requires trained GIS specialists
+- 📏 **Not scalable** - Impractical for large geographical areas
+- ❌ **Prone to inconsistency** - Varies between annotators
 
-- 🖼️ Preprocessing of satellite imagery + ground truth masks  
-- 🧠 Training & fine-tuning of U-Net (with modern augmentations & loss functions)  
-- 📊 Evaluation with **IoU**, **Dice**, **Precision**, **Recall**, **F1**  
-- 🎨 Rich visualizations: probability maps, binary masks, boundary overlays  
-- 🗺️ Export predictions as **GeoTIFF** (raster) and **GeoJSON** (vector polygons)  
+### 💡 Our Solution
+
+An automated deep learning pipeline that performs **pixel-wise semantic segmentation** to classify each pixel as:
+- 🏢 **Building** (foreground)
+- 🌳 **Background** (non-building)
 
 ---
 
 ## ✨ Key Features
 
-| Feature                          | Description                                                                 |
-|:---------------------------------|-----------------------------------------------------------------------------|
-| 🏗️ Modern U-Net architecture     | With attention gates / residual blocks / efficient backbone (optional)     |
-| 🔄 Strong data augmentation      | Rotation, flip, brightness, contrast, cutmix, mixup, elastic transforms    |
-| 📈 Multiple loss functions       | Dice + BCE, Focal loss, Lovász-Softmax, Tversky (configurable)            |
-| ⚡ Mixed precision training       | Faster training on modern GPUs with `torch.amp`                            |
-| 🗺️ Geo-referenced output         | Preserves CRS & transforms → ready for GIS software                        |
-| 📤 Vectorization                 | Raster → polygon conversion with contour simplification                   |
-| 🎨 Beautiful inference dashboard | (optional Streamlit app for interactive demo)                              |
+### 🔧 **End-to-End Pipeline**
+- Automated preprocessing of satellite imagery and ground truth masks
+- Custom data augmentation strategies for improved generalization
+- Efficient training loop with checkpointing and early stopping
+
+### 🧠 **U-Net Architecture**
+- Encoder-decoder structure with skip connections
+- Batch normalization for training stability
+- Adaptive loss functions for class imbalance handling
+
+### 📊 **Comprehensive Evaluation**
+- **Metrics**: IoU (Intersection over Union), Pixel Accuracy, Precision, Recall, F1-Score
+- **Visualization**: Predicted masks, boundary overlays, side-by-side comparisons
+- **Analysis**: Per-class performance and confusion matrices
+
+### 🗺️ **Multi-Format Output**
+- Raster predictions (`.tif`) with georeferencing
+- Vector polygons (`.geojson`) for GIS integration
+- Direct compatibility with QGIS, ArcGIS, and Google Earth Engine
 
 ---
 
-## 🚀 Real-world Applications
+## 🚀 Applications
 
-- Urban & regional **planning**
-- Post-disaster **damage assessment** (earthquakes, floods, wildfires)
-- **Illegal construction** monitoring
-- **Population estimation** & slum detection
-- Automatic **base map updating** for OpenStreetMap / national mapping agencies
-- Integration with **drone** and **aerial** imagery pipelines
+<table>
+<tr>
+<td width="50%">
+
+### 🏗️ **Urban Planning**
+- Infrastructure development mapping
+- Zoning compliance monitoring
+- Smart city analytics
+- Population density estimation
+
+</td>
+<td width="50%">
+
+### 🆘 **Disaster Management**
+- Post-disaster damage assessment
+- Emergency response routing
+- Evacuation planning
+- Recovery monitoring
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🌍 **Geospatial Analytics**
+- Automated map generation
+- Change detection over time
+- Land use classification
+- Urban sprawl analysis
+
+</td>
+<td width="50%">
+
+### 📡 **Remote Sensing**
+- Multi-temporal analysis
+- Cross-sensor validation
+- Large-scale mapping projects
+- Infrastructure monitoring
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 🛠️ Tech Stack
+## 🏗️ Model Architecture
 
-```text
-Python 3.9+
-├── Deep Learning        → PyTorch 2.x
-├── Data Handling        → rasterio, geopandas, shapely
-├── Augmentation         → albumentations
-├── Visualization        → matplotlib, seaborn, opencv-python
-├── Vectorization        → scikit-image, GDAL/ogr (optional)
-├── Interactive Demo     → Streamlit (optional)
-└── Environment          → conda / venv + requirements.txt
