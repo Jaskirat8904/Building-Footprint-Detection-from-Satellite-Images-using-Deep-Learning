@@ -116,3 +116,62 @@ An automated deep learning pipeline that performs **pixel-wise semantic segmenta
 
 ## 🏗️ Model Architecture
 
+
+### Architecture Details
+
+| Layer Type | Input Size | Output Size | Parameters |
+|------------|------------|-------------|------------|
+| **Encoder Block 1** | 256×256×3 | 128×128×64 | ~38K |
+| **Encoder Block 2** | 128×128×64 | 64×64×128 | ~221K |
+| **Encoder Block 3** | 64×64×128 | 32×32×256 | ~885K |
+| **Encoder Block 4** | 32×32×256 | 16×16×512 | ~3.5M |
+| **Bottleneck** | 16×16×512 | 16×16×1024 | ~14M |
+| **Decoder Block 1** | 16×16×1024 | 32×32×512 | ~14M |
+| **Decoder Block 2** | 32×32×512 | 64×64×256 | ~3.5M |
+| **Decoder Block 3** | 64×64×256 | 128×128×128 | ~885K |
+| **Decoder Block 4** | 128×128×128 | 256×256×64 | ~221K |
+| **Output Layer** | 256×256×64 | 256×256×1 | 65 |
+
+**Total Parameters**: ~31.2M  
+**Trainable Parameters**: ~31.2M
+
+### Key Components
+
+#### 🔽 **Contracting Path (Encoder)**
+- Captures contextual information through progressive downsampling
+- Each block: 2× (3×3 Conv + BatchNorm + ReLU) + 2×2 MaxPool
+- Feature channels double at each level: 64 → 128 → 256 → 512
+
+#### 🔄 **Bottleneck**
+- Extracts high-level semantic features
+- 1024 feature channels for maximum representation capacity
+- Connects encoder and decoder paths
+
+#### 🔼 **Expanding Path (Decoder)**
+- Enables precise localization through upsampling
+- Each block: 2×2 UpConv + Concatenation with encoder features + 2× (3×3 Conv + BatchNorm + ReLU)
+- Feature channels halve at each level: 512 → 256 → 128 → 64
+
+#### ⚡ **Skip Connections**
+- Direct connections from encoder to decoder at corresponding levels
+- Preserve fine-grained spatial information lost during downsampling
+- Enable gradient flow and faster convergence
+
+#### 🎯 **Output Layer**
+- 1×1 convolution for pixel-wise classification
+- Sigmoid activation for binary segmentation
+- Produces probability map for building presence
+
+### Loss Function
+
+```python
+# Combined loss for better segmentation
+loss = α × BCE_loss + β × Dice_loss + γ × Focal_loss
+
+where:
+  α, β, γ = loss weights
+  BCE = Binary Cross Entropy
+  Dice = 1 - Dice Coefficient
+  Focal = Focal Loss (handles class imbalance)
+
+
