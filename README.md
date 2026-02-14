@@ -11,8 +11,6 @@
 
 **Automated pixel-wise semantic segmentation of urban structures using a custom U-Net architecture.**
 
-[🚀 Live Demo](#) • [📖 Documentation](#) • [🐛 Report Bug](https://github.com/Jaskirat8904/Building-Footprint-Detection-from-Satellite-Images-using-Deep-Learning/issues)
-
 ![Header Interface](Screenshots/1.png)
 
 ---
@@ -56,8 +54,6 @@ The model has been rigorously evaluated on both validation and test sets, demons
 ## 🏗️ Model Architecture
 
 The system utilizes a **31.2M parameter U-Net** optimized for binary segmentation.
-
-
 
 | Component | Technical Detail |
 | :--- | :--- |
