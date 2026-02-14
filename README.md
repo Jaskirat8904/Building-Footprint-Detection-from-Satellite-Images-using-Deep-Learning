@@ -162,16 +162,6 @@ An automated deep learning pipeline that performs **pixel-wise semantic segmenta
 - Sigmoid activation for binary segmentation
 - Produces probability map for building presence
 
-### Loss Function
 
-```python
-# Combined loss for better segmentation
-loss = α × BCE_loss + β × Dice_loss + γ × Focal_loss
-
-where:
-  α, β, γ = loss weights
-  BCE = Binary Cross Entropy
-  Dice = 1 - Dice Coefficient
-  Focal = Focal Loss (handles class imbalance)
 
 
