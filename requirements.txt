@@ -1,10 +1,20 @@
-numpy
-matplotlib
-opencv-python
-scikit-image
-scikit-learn
-rasterio
-geopandas
-tensorflow>=2.9.0
-seaborn
-shapely
+# Core Machine Learning & Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+onnxruntime>=1.15.0
+
+# Web Application Framework
+streamlit>=1.30.0
+
+# Data Manipulation & Numerical Processing
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Image Processing & Geospatial
+Pillow>=10.0.0
+opencv-python-headless>=4.8.0
+scipy>=1.11.0
+
+# Visualization
+plotly>=5.17.0
+matplotlib>=3.7.0
